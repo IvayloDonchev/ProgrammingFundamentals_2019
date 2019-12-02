@@ -10,8 +10,8 @@ vector<Eagle> eagles;
 vector<Snake> snakes;
 vector<Mouse> mouses;
 
-enum class Predators{Eagle, Snake};
-enum class Victims{Snake, Mouse};
+enum class Predators {Eagle, Snake};
+enum class Victims {Snake, Mouse};
 
 void Init()
 {
@@ -34,13 +34,13 @@ void Eats(const Predators predator, const Victims victim)
 {
 	if (predator == Predators::Eagle && eagles.size() > 0)		// хищникът е орел
 	{
-		if (victim == Victims::Snake && snakes.size() > 0)	// яде змия
+		if (victim == Victims::Snake && snakes.size() > 0)	// орелът яде змия
 		{
 			eagles.pop_back();						// намаляват орлите
 			snakes.pop_back();						// намаляват змиите
 			mouses.push_back(class Mouse());		// увеличават се мишките (орелът става мишка)
 		}
-		if (victim == Victims::Mouse && mouses.size() > 0)	// яде мишка
+		if (victim == Victims::Mouse && mouses.size() > 0)	// орелът яде мишка
 		{
 			eagles.pop_back();
 			mouses.pop_back();
@@ -49,7 +49,7 @@ void Eats(const Predators predator, const Victims victim)
 	}
 	if (predator == Predators::Snake && snakes.size() > 0)		// хищникът е змия
 	{
-		if (mouses.size() > 0)						// яде само мишки
+		if (mouses.size() > 0)						// змията яде само мишки
 		{
 			snakes.pop_back();
 			mouses.pop_back();
