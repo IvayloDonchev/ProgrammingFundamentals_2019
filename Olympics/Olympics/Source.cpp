@@ -1,62 +1,44 @@
-#include <vector>
 #include <iostream>
 using namespace std;
 
-class Eagle {};
-class Snake {};
-class Mouse {};
+enum class Animal {Eagle, Snake, Mouse};
 
-vector<Eagle> eagles;
-vector<Snake> snakes;
-vector<Mouse> mouses;
-
-enum class Predators {Eagle, Snake};
-enum class Victims {Snake, Mouse};
-
-void Init()
-{
-	for (int i = 1; i <= 6; i++)
-		eagles.push_back(Eagle());
-	for (int i = 1; i <= 17; i++)
-		snakes.push_back(Snake());
-	for (int i = 1; i <= 55; i++)
-		mouses.push_back(Mouse());
-}
+size_t eagles{ 6 }, snakes{ 17 }, mouses{ 55 };
 
 void Show()
 {
-	cout << "Eagles: " << eagles.size() << endl;
-	cout << "Snakes: " << snakes.size() << endl;
-	cout << "Mouses: " << mouses.size() << endl << endl;
+	cout << "Eagles: " << eagles << endl;
+	cout << "Snakes: " << snakes << endl;
+	cout << "Mouses: " << mouses << endl << endl;
 }
 
-bool Eats(const Predators predator, const Victims victim)
+bool Eats(Animal predator, Animal victim)
 {
-	if (predator == Predators::Eagle && eagles.size() > 0)		// хищникът е орел
+	if (predator == Animal::Eagle && eagles > 0)		// хищникът е орел
 	{
-		if (victim == Victims::Snake && snakes.size() > 0)	// орелът яде змия
+		if (victim == Animal::Snake && snakes > 0)		// орелът яде змия
 		{
-			eagles.pop_back();						// намаляват орлите
-			snakes.pop_back();						// намаляват змиите
-			mouses.push_back(class Mouse());		// увеличават се мишките (орелът става мишка)
+			--eagles;						// намаляват орлите
+			--snakes;						// намаляват змиите
+			++mouses;						// увеличават се мишките (орелът става мишка)
 			return true;
 		}
-		if (victim == Victims::Mouse && mouses.size() > 0)	// орелът яде мишка
+		if (victim == Animal::Mouse && mouses > 0)	// орелът яде мишка
 		{
-			eagles.pop_back();
-			mouses.pop_back();
-			snakes.push_back(class Snake());		// орелът става змия
+			--eagles;
+			--mouses;
+			++snakes;		// орелът става змия
 			return true;
 		}
 		return false;
 	}
-	if (predator == Predators::Snake && snakes.size() > 0)		// хищникът е змия
+	if (predator == Animal::Snake && snakes > 0)		// хищникът е змия
 	{
-		if (mouses.size() > 0)						// змията яде само мишки
+		if (mouses > 0)		// змията яде само мишки
 		{
-			snakes.pop_back();
-			mouses.pop_back();
-			eagles.push_back(class Eagle());		// змията става орел
+			--snakes;
+			--mouses;
+			++eagles;		// змията става орел
 			return true;
 		}
 	}
@@ -65,15 +47,14 @@ bool Eats(const Predators predator, const Victims victim)
 
 int main()
 {
-	Init();
 	Show();
 	size_t count{ 0 };
 	do {
-		Predators p = Predators(rand() % 2);
-		Victims v = Victims(rand() % 2);
+		Animal p = Animal(rand() % 2);
+		Animal v = Animal(1 + rand() % 2);
 		if(Eats(p, v))
 			++count;
 		Show();
-	} while (eagles.size()+snakes.size()+mouses.size() > 1);
+	} while (eagles+snakes+mouses > 1);
 	cout << count << " eatings\n";
 }
