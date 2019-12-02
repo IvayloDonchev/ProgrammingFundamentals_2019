@@ -16,9 +16,9 @@ size_t eagles{ 6 }, snakes{ 17 }, mouses{ 55 };
 
 void Show()
 {
-	cout << "Eagles: " << eagles << endl;
-	cout << "Snakes: " << snakes << endl;
-	cout << "Mouses: " << mouses << endl << endl;
+	cout << "Eagles: " << eagles << '\t'
+	     << "Snakes: " << snakes << '\t'
+	     << "Mouses: " << mouses << endl << endl;
 }
 
 bool Eats(Animal predator, Animal victim)
@@ -30,6 +30,7 @@ bool Eats(Animal predator, Animal victim)
 			--eagles;							// намаляват орлите
 			--snakes;							// намаляват змиите
 			++mouses;							// увеличават се мишките (орелът става мишка)
+			cout << "Eagle eats snake...\t";
 			return true;
 		}
 		if (victim == Mouse && mouses > 0)		// орелът ще яде мишка
@@ -37,6 +38,7 @@ bool Eats(Animal predator, Animal victim)
 			--eagles;
 			--mouses;
 			++snakes;							// орелът става змия
+			cout << "Eagle eats mouse...\t";
 			return true;
 		}
 		return false;
@@ -46,6 +48,7 @@ bool Eats(Animal predator, Animal victim)
 			--snakes;
 			--mouses;
 			++eagles;		// змията става орел
+			cout << "Snake eats mouse...\t";
 			return true;
 	}
 	return false;
@@ -61,7 +64,7 @@ int main()
 		auto victim = Animal(1 + rand() % 2);
 		if (Eats(predator, victim))
 		{
-			++count;
+			cout << '(' << ++count << ") ";
 			Show();
 		}
 	} while (eagles + snakes + mouses > 1);
