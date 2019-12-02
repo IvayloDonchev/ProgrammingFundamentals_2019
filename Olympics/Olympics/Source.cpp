@@ -6,9 +6,9 @@ class Eagle {};
 class Snake {};
 class Mouse {};
 
-vector<class Eagle> eagles;
-vector<class Snake> snakes;
-vector<class Mouse> mouses;
+vector<Eagle> eagles;
+vector<Snake> snakes;
+vector<Mouse> mouses;
 
 enum class Predators{Eagle, Snake};
 enum class Victims{Snake, Mouse};
@@ -49,7 +49,7 @@ void Eats(const Predators predator, const Victims victim)
 	}
 	if (predator == Predators::Snake && snakes.size() > 0)		// хищникът е змия
 	{
-		if (victim == Victims::Mouse && mouses.size() > 0)	// яде мишка
+		if (mouses.size() > 0)						// яде само мишки
 		{
 			snakes.pop_back();
 			mouses.pop_back();
