@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 
 enum class Animal {Eagle, Snake, Mouse};
@@ -44,6 +45,7 @@ bool Eats(Animal predator, Animal victim)
 
 int main()
 {
+	srand(unsigned(time(nullptr)));
 	Show();
 	size_t count{ 0 };
 	do {
