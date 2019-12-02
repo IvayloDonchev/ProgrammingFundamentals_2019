@@ -62,10 +62,13 @@ int main()
 {
 	Init();
 	Show();
+	size_t count{ 0 };
 	do {
+		++count;
 		Predators p = Predators(rand() % 2);
 		Victims v = Victims(rand() % 2);
 		Eats(p, v);
 		Show();
-	} while (true);
+	} while (eagles.size()+snakes.size()+mouses.size() > 1);
+	cout << count << " eatings\n";
 }
