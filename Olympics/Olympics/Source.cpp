@@ -30,7 +30,7 @@ void Show()
 	cout << "Mouses: " << mouses.size() << endl << endl;
 }
 
-void Eats(const Predators predator, const Victims victim)
+bool Eats(const Predators predator, const Victims victim)
 {
 	if (predator == Predators::Eagle && eagles.size() > 0)		// хищникът е орел
 	{
@@ -39,13 +39,16 @@ void Eats(const Predators predator, const Victims victim)
 			eagles.pop_back();						// намаляват орлите
 			snakes.pop_back();						// намаляват змиите
 			mouses.push_back(class Mouse());		// увеличават се мишките (орелът става мишка)
+			return true;
 		}
 		if (victim == Victims::Mouse && mouses.size() > 0)	// орелът яде мишка
 		{
 			eagles.pop_back();
 			mouses.pop_back();
 			snakes.push_back(class Snake());		// орелът става змия
+			return true;
 		}
+		return false;
 	}
 	if (predator == Predators::Snake && snakes.size() > 0)		// хищникът е змия
 	{
@@ -54,8 +57,10 @@ void Eats(const Predators predator, const Victims victim)
 			snakes.pop_back();
 			mouses.pop_back();
 			eagles.push_back(class Eagle());		// змията става орел
+			return true;
 		}
 	}
+	return false;
 }
 
 int main()
@@ -64,10 +69,10 @@ int main()
 	Show();
 	size_t count{ 0 };
 	do {
-		++count;
 		Predators p = Predators(rand() % 2);
 		Victims v = Victims(rand() % 2);
-		Eats(p, v);
+		if(Eats(p, v))
+			++count;
 		Show();
 	} while (eagles.size()+snakes.size()+mouses.size() > 1);
 	cout << count << " eatings\n";
