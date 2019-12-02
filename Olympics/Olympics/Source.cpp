@@ -32,15 +32,12 @@ bool Eats(Animal predator, Animal victim)
 		}
 		return false;
 	}
-	if (predator == Animal::Snake && snakes > 0)		// хищникът е змия
+	if (predator == Animal::Snake && snakes > 0 && mouses > 0)		// хищникът е змия и яде само мишки
 	{
-		if (mouses > 0)		// змията яде само мишки
-		{
 			--snakes;
 			--mouses;
 			++eagles;		// змията става орел
 			return true;
-		}
 	}
 	return false;
 }
