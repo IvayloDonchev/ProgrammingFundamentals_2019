@@ -67,7 +67,7 @@ int main()
 			cout << '(' << ++count << ") ";
 			Show();
 		}
-	} while (eagles + snakes + mouses > 1);
+	} while ((eagles+snakes != 0) && (eagles+mouses!=0) && (snakes+mouses!=0));
 	cout << count << " eatings\n";
 }
 
