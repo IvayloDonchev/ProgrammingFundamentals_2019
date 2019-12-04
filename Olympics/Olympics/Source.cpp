@@ -10,7 +10,7 @@
 #include <ctime>
 using namespace std;
 
-enum Animal {Eagle, Snake, Mouse};
+enum class Animal {Eagle, Snake, Mouse};
 
 size_t eagles{ 6 }, snakes{ 17 }, mouses{ 55 };
 
@@ -23,9 +23,9 @@ void Show()
 
 bool Eats(Animal predator, Animal victim)
 {
-	if (predator == Eagle && eagles > 0)		// хищникът е орел
+	if (predator == Animal::Eagle && eagles > 0)		// хищникът е орел
 	{
-		if (victim == Snake && snakes > 0)		// орелът ще яде змия
+		if (victim == Animal::Snake && snakes > 0)		// орелът ще яде змия
 		{
 			--eagles;							// намаляват орлите
 			--snakes;							// намаляват змиите
@@ -33,7 +33,7 @@ bool Eats(Animal predator, Animal victim)
 			cout << "Eagle eats snake...\t";
 			return true;
 		}
-		if (victim == Mouse && mouses > 0)		// орелът ще яде мишка
+		if (victim == Animal::Mouse && mouses > 0)		// орелът ще яде мишка
 		{
 			--eagles;
 			--mouses;
@@ -43,7 +43,7 @@ bool Eats(Animal predator, Animal victim)
 		}
 		return false;
 	}
-	if (predator == Snake && snakes > 0 && mouses > 0)
+	if (predator == Animal::Snake && snakes > 0 && mouses > 0)
 	{		// хищникът е змия и яде само мишки
 			--snakes;
 			--mouses;
