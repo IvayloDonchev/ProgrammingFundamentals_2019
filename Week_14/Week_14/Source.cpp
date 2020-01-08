@@ -45,7 +45,7 @@ int* max(int A[m][n])	// връща указател към най-големия елемент
 	return p;
 }
 
-pair<int,int> max_row_col(int A[m][n])	// реда и колоната на максимума
+auto max_row_col(int A[m][n])	// реда и колоната на максимума
 {
 	int r = 0, c = 0;
 	for (int i = 0; i < m; i++)
@@ -105,10 +105,10 @@ char* my_strcpy(char* dest, const char* source)
 
 int main()
 {
-	char s[10]="+1234";
+	/*char s[10]="+1234";
 	int x;
 	x = atoi(s);
-	cout << x << endl;
+	cout << x << endl;*/
 
 	/*char s1[35] = "Happy";
 	char s2[20] = "Birthday!";
@@ -149,31 +149,32 @@ int main()
 	delete[] name;*/
 
 
-	//int m, n;
-	//cout << "m = "; cin >> m;
-	//cout << "n = "; cin >> n;
-	//int** A;	// указател към указател към int
-	//A = new int* [m]; // m на брой int*
-	//for (int i = 0; i < m; i++)
-	//	A[i] = new int[n];
-	//// въвеждане на елементите
-	//for(int i=0; i<m; i++)
-	//	for (int j = 0; j < n; j++)
-	//	{
-	//		cout << "A[" << i << "][" << j << "] = ";
-	//		cin >> A[i][j];
-	//	}
-	//// извеждане по редове
-	//for (int i = 0; i < m; i++)
-	//{
-	//	for (int j = 0; j < n; j++)
-	//		cout << A[i][j] << '\t';
-	//	cout << endl;
-	//}
-	//// освобождаване на паметта
-	//for (int i = 0; i < m; i++)
-	//	delete[] A[i];
-	//delete[] A;
+	int m, n;
+	cout << "m = "; cin >> m;
+	cout << "n = "; cin >> n;
+	int** A;	// указател към указател към int
+	A = new int* [m]; // m на брой int*
+	for (int i = 0; i < m; i++)
+		A[i] = new int[n];
+	// въвеждане на елементите
+	for(int i=0; i<m; i++)
+		for (int j = 0; j < n; j++)
+		{
+			cout << "A[" << i << "][" << j << "] = ";
+			cin >> A[i][j];
+		}
+	// извеждане по редове
+	for (int i = 0; i < m; i++)
+	{
+		for (int j = 0; j < n; j++)
+			cout << A[i][j] << '\t';
+		cout << endl;
+	}
+	
+	// освобождаване на паметта
+	for (int i = 0; i < m; i++)
+		delete[] A[i];
+	delete[] A;
 
 	//int(*p)[4] = new int[3][4]; // заделяне на памет за матрицата
 	//for (int i = 0; i < 3; i++)
