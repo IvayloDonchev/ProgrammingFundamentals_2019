@@ -27,12 +27,20 @@ int main()
 		int hoursDifference = abs(totalMinutesDifference / 60);
 		int minutesDifference = abs(totalMinutesDifference % 60);
 		if (hoursDifference > 0)
+		{
 			result = to_string(hoursDifference) + ":";
-		if (minutesDifference < 10)
-			result += "0";
-		result += to_string(minutesDifference) + " hours";
+			if (minutesDifference < 10)
+				result += "0";
+			result += to_string(minutesDifference) + " hours";
+		}
+		else
+			result = to_string(minutesDifference) + " minutes";
+		if (totalMinutesDifference < 0)
+			result += " before the start";
+		else
+			result += " after the start";
 	}
-	else
-		
-
+	cout << studentArrival << endl;
+	if (result != "")
+		cout << result << endl;
 }
