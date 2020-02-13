@@ -90,6 +90,8 @@ namespace Discards
             var lastPhrase = words[6..];    // contains "the", "lazy" and "dog"
             Range phrase = 1..4;
             var text = words[phrase];
+
+
         }
     }
 }
